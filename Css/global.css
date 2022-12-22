@@ -1,0 +1,58 @@
+* {
+  box-sizing: border-box;
+  font-family: "Royal_Fighter";
+}
+
+.disclaimer {
+  display: none !important;
+}
+
+html {
+  font-size: 1.1vw;
+}
+
+body {
+  margin: 0;
+  scroll-behavior: smooth;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.full-screen {
+  width: 100vw;
+  height: 100vh;
+}
+
+.flex-center-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-center-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@font-face {
+  font-family: "Royal_Fighter";
+  src: url("../Fonts/Royal_Fighter.otf");
+}
+
+@font-face {
+  font-family: "Edit Undo";
+  src: url("../Fonts/editundo.ttf");
+}

@@ -1,0 +1,359 @@
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: #000;
+  height: 100vh;
+  width: 100vw;
+  opacity: 1;
+  visibility: visible;
+  transition: 1s;
+  transition-property: opacity, transform;
+}
+
+.menu .title {
+  position: absolute;
+  top: 7%;
+  word-spacing: 20vw;
+  padding-left: 2rem;
+  color: #db0000;
+  font-size: 7rem;
+}
+
+.menu .sound-button {
+  right: 1rem;
+  background: url("../Images/Ui/sound_on.png");
+}
+
+.menu .screen-button {
+  right: 5.5rem;
+  background: url("../Images/Ui/full_screen.png");
+}
+
+.menu .sound-button,
+.menu .screen-button {
+  position: absolute;
+  z-index: 11;
+  padding: 0.5rem;
+  width: 4rem;
+  height: 4rem;
+  top: 1rem;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  cursor: pointer;
+}
+
+.difficulty .options,
+.menu .options {
+  color: #db0000;
+  font-size: 3rem;
+  position: absolute;
+  top: calc(10vh + 2rem);
+  letter-spacing: 0.1rem;
+}
+
+.difficulty .options {
+  top: calc(28vh + 2rem);
+}
+
+.difficulty .options div,
+.menu .options div {
+  z-index: 11;
+  width: 15rem;
+  padding: 0.5rem 1rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.difficulty .options div:hover,
+.menu .options div:hover,
+.back:hover {
+  background: url("../Images/Ui/menu_underline.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.menu .logo {
+  top: 1vh;
+  background: url("../Images/Ui/menu_blood_logo.png");
+}
+
+.menu .logo {
+  position: absolute;
+  width: 100vw;
+  height: 17rem;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: center !important;
+}
+
+.difficulty,
+.top-score,
+.credits {
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  z-index: 10;
+  background-color: black;
+  color: #db0000;
+  transition: 1s;
+  transition-property: opacity, transform;
+}
+
+.difficulty {
+  top: 0;
+  left: 100vw;
+  opacity: 1;
+  visibility: visible;
+  transition: 1s;
+  transition-property: opacity, transform;
+}
+
+.difficulty .title,
+.top-score .title,
+.credits .title {
+  position: absolute;
+  top: 1.5rem;
+  font-size: 6rem;
+  letter-spacing: 0.2rem;
+}
+
+.difficulty .back,
+.top-score .back,
+.credits .back {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  padding: 0.5rem 1rem;
+  font-size: 3rem;
+}
+
+.top-score .options,
+.credits .options {
+  margin-top: 7.5rem;
+  width: 80%;
+  max-height: 75vh;
+}
+
+.top-score .options .level-tabs,
+.top-score .options .scores-tab {
+  justify-content: space-around;
+  width: 100%;
+}
+
+.top-score .options .level-tabs {
+  border: 1px solid red;
+  border-right: none;
+  margin-bottom: 2rem;
+}
+
+.top-score .options .level-tabs .tab:hover {
+  color: #747474;
+}
+
+.top-score .options .scores-tab {
+  margin-top: -1px;
+  color: #ddd;
+}
+
+.top-score .options .level-tabs .tab,
+.top-score .options .scores-tab .tab {
+  flex-grow: 1;
+  width: 11rem;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.top-score .options .level-tabs .tab {
+  border-right: 1px solid red;
+  cursor: pointer;
+}
+
+.top-score .options .level-tabs .tab.active {
+  color: whitesmoke;
+  background: #232526;
+}
+
+.top-score .options .score-ranking {
+  color: #ff0000;
+  height: 100vh;
+  width: 100%;
+}
+
+.top-score .options .score-ranking > div {
+  justify-content: space-around;
+  font-family: "Edit undo";
+  font-size: 1.5rem;
+  padding: 1rem;
+  width: 50%;
+  height: 100%;
+}
+
+.top-score .options .score-ranking > div:first-child {
+  border-right: 1px solid red;
+}
+
+.top-score .options .score-ranking div > div {
+  width: 100%;
+  height: 1.35rem;
+}
+
+.top-score .options .score-ranking > div > div:first-child {
+  color: gold;
+}
+
+.top-score .options .score-ranking > div > div:nth-child(2) {
+  color: silver;
+}
+
+.top-score .options .score-ranking > div > div:nth-child(3) {
+  color: #cd7f32;
+}
+
+.top-score .options .score-ranking div > div > div {
+  font-family: "Edit undo";
+  text-align: left;
+}
+
+.top-score .options .score-ranking div > div .nr {
+  width: 4rem;
+}
+
+.top-score .options .score-ranking div > div .name {
+  flex-grow: 1;
+}
+
+.top-score .options .score-ranking div > div .score {
+  width: 12rem;
+}
+
+.credits .options {
+  justify-content: center;
+  align-content: flex-start;
+  font-size: 1.5rem;
+  width: 100vw;
+}
+
+.credits .options section {
+  height: 60vh;
+  margin-bottom: 10vh;
+  width: 32rem;
+}
+
+.credits .options section:nth-child(2) {
+  border-right: 1px solid #db0000;
+  border-left: 1px solid #db0000;
+  padding: 0 1rem;
+  width: 14rem;
+}
+
+.credits .options section > div > div {
+  padding: 0 1rem;
+}
+
+.credits .options h3 {
+  text-align: center;
+}
+
+.credits .options .links a {
+  color: #ddd;
+  padding: 0.5rem;
+  margin-bottom: 1vh;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.credits .options .links a:hover {
+  text-decoration: underline;
+}
+
+.credits footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+  background-color: black;
+}
+
+.credits footer span {
+  color: #ddd;
+}
+
+/* ---- Animations ---- */
+
+.menu.anim {
+  animation: change_bg 2s linear forwards;
+}
+
+.menu .logo.anim {
+  animation: change_opacity1 5s linear forwards, anim_logo 12s forwards;
+}
+
+.menu .title.anim,
+.menu .screen-button,
+.menu .sound-button {
+  animation: change_opacity2 9.5s linear forwards;
+}
+
+.menu .options.anim {
+  animation: show_menu 12s forwards;
+}
+
+/* prettier-ignore */
+@keyframes change_bg {
+  from {background-color: whitesmoke;}
+  to {background-color: black;}
+}
+
+/* prettier-ignore */
+@keyframes change_opacity1 {
+  0% {opacity: 0;}
+  50% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+/* prettier-ignore */
+@keyframes change_opacity2 {
+  0% {opacity: 0;}
+  70% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes anim_logo {
+  0% {
+    background: url("../Images/Ui/menu_logo.png");
+    transform: scale(2.5) translateY(calc(5rem + 2vh));
+  }
+  54.5% {
+    background: url("../Images/Ui/menu_logo.png");
+    transform: scale(2.5) translateY(calc(5rem + 2vh));
+  }
+  54.9% {
+    background: url("../Images/Ui/menu_blood_logo.png");
+    transform: scale(2.5) translateY(calc(5rem + 2vh));
+  }
+  75% {
+    background: url("../Images/Ui/menu_blood_logo.png");
+    transform: scale(2.5) translateY(calc(5rem + 2vh));
+  }
+  100% {
+    background: url("../Images/Ui/menu_blood_logo.png");
+    transform: scale(1) translateY(0vh);
+  }
+}
+
+/* prettier-ignore */
+@keyframes show_menu {
+  0% {transform: translateY(100vh);}
+  75% {transform: translateY(100vh);}
+  100% {transform: translateY(0vh);}
+}

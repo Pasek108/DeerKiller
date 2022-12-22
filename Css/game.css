@@ -1,0 +1,273 @@
+/* -------------------------- Interface -------------------------- */
+
+/* ---- Game Over ---- */
+
+.game-over {
+  position: absolute;
+  top: -100vh;
+  z-index: 5;
+  margin-top: 1vh;
+  visibility: hidden;
+  transition: 2s linear;
+  transition-property: transform;
+}
+
+.game-over .skull {
+  position: absolute;
+  z-index: 5;
+  background: url("../Images/Ui/skull.png");
+  background-repeat: no-repeat;
+  background-size: 30rem;
+  background-position: 50% calc(50% - 11rem);
+}
+
+.game-over .options {
+  position: absolute;
+  width: 45rem;
+  height: 16rem;
+  max-width: 100vw;
+  max-height: 100vh;
+  border: 4px solid #000;
+  background: #232526;
+}
+
+.game-over .options .save-score,
+.game-over .options .back-to-menu {
+  position: absolute;
+  z-index: 6;
+  top: 2rem;
+  width: 12rem;
+  padding-bottom: 1.3rem;
+  font-size: 2rem;
+  text-align: center;
+  color: red;
+}
+
+.game-over .options .save-score {
+  left: 2rem;
+}
+
+.game-over .options .back-to-menu {
+  right: 2rem;
+}
+
+.game-over .options .save-score:hover,
+.game-over .options .back-to-menu:hover {
+  text-decoration: none !important;
+  background: url("../Images/Ui/menu_underline.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.game-over .options .text {
+  position: absolute;
+  z-index: 6;
+  color: #fff;
+  margin-top: 5rem;
+  margin-left: -2rem;
+  font-size: 6rem;
+  word-spacing: 2rem;
+}
+
+.game-over .options .text input {
+  width: 18rem;
+  margin-right: 2rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #000;
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.game-over .options .text input:focus {
+  outline: none;
+}
+
+.game-over .options .text .pts {
+  width: 18rem;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.game-over .options .text .pts div {
+  font-family: "Edit Undo";
+  width: 1.5rem;
+}
+
+/* ---- Health Bar ---- */
+
+.game .hp {
+  justify-content: space-between;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  width: 10rem;
+  height: 2.425rem;
+  padding: 0.25rem 1rem;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 1rem;
+  font-family: "Edit Undo";
+  color: #fff;
+  font-size: 2rem;
+  letter-spacing: 0.4rem;
+  overflow: hidden;
+}
+
+.game .hp .heart {
+  background: url("../Images/Ui/heart.PNG");
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: 50% 0.06rem;
+  width: 1.9rem;
+  height: 1.9rem;
+}
+
+/* ---- Energy Bar ---- */
+
+.game .energy {
+  justify-content: space-between;
+  position: absolute;
+  top: 1rem;
+  left: 12rem;
+  z-index: 2;
+  width: 15rem;
+  height: 2.425rem;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.game .energy.s0 {
+  background: linear-gradient(90deg, #1573ff 0%, #1573ff 0rem, #fff 0rem, #fff 100%);
+}
+.game .energy.s1 {
+  background: linear-gradient(90deg, #1573ff 0%, #1573ff 3rem, #fff 3rem, #fff 100%);
+}
+.game .energy.s2 {
+  background: linear-gradient(90deg, #1573ff 0%, #1573ff 6rem, #fff 6rem, #fff 100%);
+}
+.game .energy.s3 {
+  background: linear-gradient(90deg, #1573ff 0%, #1573ff 9rem, #fff 9rem, #fff 100%);
+}
+.game .energy.s4 {
+  background: linear-gradient(90deg, #1573ff 0%, #1573ff 12rem, #fff 12rem, #fff 100%);
+}
+.game .energy.s5 {
+  background: linear-gradient(90deg, #1573ff 0%, #1573ff 15rem, #fff 15rem, #fff 100%);
+}
+
+.game .energy div {
+  width: 3rem;
+  height: 100%;
+  margin-right: -2px;
+  border-right: 2px solid #000;
+}
+
+/* ---- Points Counter ---- */
+
+.game .points {
+  justify-content: space-between;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  padding: 0.25rem 0.7rem 0.25rem 1rem;
+  background-color: #222;
+  border: 1px solid #fff;
+  border-radius: 1rem;
+}
+
+.game .points div {
+  width: 1.4rem;
+  font-family: "Edit Undo";
+  text-align: center;
+  color: #fff;
+  font-size: 2rem;
+}
+
+/* -------------------------- Game -------------------------- */
+
+.black-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 8;
+  background-color: #000;
+  color: red;
+  font-size: 4rem;
+  opacity: 1;
+  visibility: visible;
+  transition: 1.5s;
+  transition-property: opacity;
+}
+
+.counter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 8;
+  color: red;
+  font-size: 7rem;
+  visibility: visible;
+}
+
+.game {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background-color: #038b03;
+}
+
+.road {
+  position: absolute;
+  top: 0;
+  width: calc(100vh * (500 / 864));
+  max-width: 100vw;
+  height: 100vh;
+  background-color: #1d1d1d;
+}
+
+.game-canvas, .road-canvas, .trees-canvas {
+  position: absolute;
+  top: 0;
+  width: 100vh;
+  max-width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+.road-canvas {
+  width: 0.75vh;
+}
+
+.trees-canvas {
+  width: 100vw;
+}
+
+.middle {
+  width: fit-content;
+  max-width: 100vw;
+  height: 100vh;
+}
+
+.middle div {
+  width: calc(100vh * (500 / 864));
+  height: 100vh;
+}
+
+.left,
+.right {
+  height: 100vh;
+  flex-grow: 1;
+  position: relative;
+}
+
+.left {
+  transform: scaleX(-1);
+}
+
