@@ -57,16 +57,17 @@ See [live demo](https://pas-artur.000webhostapp.com/deer-killer/).
 
 Languages:
 - HTML
-- [SCSS](https://sass-lang.com)
+- CSS
 - JS
+- PHP
   
 Libraries:
 - [FontAwesome](https://fontawesome.com) 6.2.1
-- [GoogleFonts](https://fonts.google.com)
   
 Programs:
+- [XAMPP](https://www.apachefriends.org/pl/index.html)
 - [VSCode](https://code.visualstudio.com)
-- [Prepros](https://prepros.io) (auto preview, processing scss, project organization)
+- [Prepros](https://prepros.io)
   
 ----------------------------------
 
@@ -102,22 +103,34 @@ To edit program:
 
 ### Acknowledgements
 #### Images
-- [Menu background](https://i.imgur.com/LAFEmei.png)
-- [Achievement ribbon](https://svgsilh.com/image/1093181.html)
-- [Achievement star](https://svgsilh.com/image/775819.html)
-- [Game background](https://lil-cthulhu.itch.io/pixel-art-cave-background)
-- [Game background floor](https://lil-cthulhu.itch.io/pixel-art-tileset-cave)
-- [Hero sprite](https://www.spriters-resource.com/ds_dsi/rondoofswords/sheet/42664/)
-- [Goblin sprite](https://www.spriters-resource.com/psp/lunarsilverstarharmony/sheet/58114/)
+- [Menu logo](https://pixabay.com/vectors/traffic-sign-road-sign-caution-deer-3015221/)
+- [Menu blood](https://www.transparentpng.com/download/blood-splatter-cut-out_14064.html)
+- [Menu underline](https://www.dreamstime.com/red-highlighter-marker-red-highlighter-marker-strokes-vector-brush-pen-underline-lines-image129437064)
+- [Deer skull](https://www.deviantart.com/seansan1/art/First-Attempt-at-Pixel-Art-Deer-Skull-644362445)
+- [Cars](https://www.spriters-resource.com/nes/supercars/sheet/102985/)
+- [Blood](http://pixelartmaker.com/art/a3c176205942be4)
+- [Car explosion](https://nyknck.itch.io/explosion)
+- [Forest background](https://elthen.itch.io/2d-pixel-art-forest-tileset)
 
-#### Music and sounds
-- [Menu music](https://opengameart.org/content/fantasy-music-the-wraiths-of-winter)
-- [Menu option select](https://opengameart.org/content/menu-selection-click)
-- [Game music 1](https://opengameart.org/content/massacre-soundtrack)
-- [Game music 2](https://opengameart.org/content/fight-theme-metal)
-- [Game music 3](https://filmmusic.io/song/4814-metalicious)
-- [Game over music](https://freesound.org/people/HerbertBoland/sounds/128554/)
-- [Goblin death](https://freesound.org/people/Rickplayer/sounds/398007/)
+#### Music
+- [Menu music](https://www.youtube.com/watch?v=k68thGEDlx8)
+- [Game music](https://www.youtube.com/watch?v=XkDZxO-Fn3E)
+
+#### Fonts
+- [Royal fighter](https://fontmeme.com/fonts/royal-fighter-font/)
+- [Edit undo](https://www.1001fonts.com/edit-undo-font.html)
+
+#### Sounds
+- [Car crush](https://www.freesoundslibrary.com/car-crash-sound-effect/)
+- [Car explosion](https://www.freesoundeffects.com/free-track/bomb-2-466478/)
+- [Tires screech](https://bigsoundbank.com/detail-2370-screeching-tires-3.html)
+- [Car crash on tree](https://www.youtube.com/watch?v=Go19ucS43OM)
+- [Points count](https://freesound.org/people/xtrgamr/sounds/253546/)
+- [Deer laugh 1](https://mixkit.co/free-sound-effects/laugh/)
+- [Deer laugh 2](https://mixkit.co/free-sound-effects/laugh/)
+- [Deer laugh 3](https://mixkit.co/free-sound-effects/laugh/)
+- [Deer laugh 4](https://mixkit.co/free-sound-effects/laugh/)
+- [Deer laugh 4](https://mixkit.co/free-sound-effects/laugh/)
 
 <br>
 
