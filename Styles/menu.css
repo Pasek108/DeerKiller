@@ -22,27 +22,30 @@
 }
 
 .menu .sound-button {
-  right: 1rem;
-  background: url("../Images/Ui/sound_on.png");
-}
-
-.menu .screen-button {
-  right: 5.5rem;
-  background: url("../Images/Ui/full_screen.png");
-}
-
-.menu .sound-button,
-.menu .screen-button {
   position: absolute;
+  top: 1rem;
+  right: 1rem;
   z-index: 11;
   padding: 0.5rem;
-  width: 4rem;
-  height: 4rem;
-  top: 1rem;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  background-size: contain !important;
+  color: red;
+  font-size: 2rem;
   cursor: pointer;
+}
+
+.menu .sound-button.on .fa-volume-high {
+  display: initial;
+}
+
+.menu .sound-button.on .fa-volume-xmark {
+  display: none;
+}
+
+.menu .sound-button.off .fa-volume-high {
+  display: none;
+}
+
+.menu .sound-button.off .fa-volume-xmark {
+  display: initial;
 }
 
 .difficulty .options,
@@ -284,8 +287,14 @@
   background-color: black;
 }
 
-.credits footer span {
-  color: #ddd;
+.credits footer a {
+  color: #ffe600;
+  text-decoration: none;
+}
+
+.credits footer a:hover {
+  color: #fff;
+  text-decoration: underline;
 }
 
 /* ---- Animations ---- */

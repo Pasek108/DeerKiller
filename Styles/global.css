@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "Royal_Fighter";
+  src: url("./Fonts/Royal_Fighter.otf");
+}
+
+@font-face {
+  font-family: "Edit Undo";
+  src: url("./Fonts/editundo.ttf");
+}
+
 * {
   box-sizing: border-box;
   font-family: "Royal_Fighter";
@@ -45,14 +55,4 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-@font-face {
-  font-family: "Royal_Fighter";
-  src: url("../Fonts/Royal_Fighter.otf");
-}
-
-@font-face {
-  font-family: "Edit Undo";
-  src: url("../Fonts/editundo.ttf");
 }

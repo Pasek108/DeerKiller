@@ -232,7 +232,9 @@
   background-color: #1d1d1d;
 }
 
-.game-canvas, .road-canvas, .trees-canvas {
+.game-canvas,
+.road-canvas,
+.trees-canvas {
   position: absolute;
   top: 0;
   width: 100vh;
@@ -270,4 +272,3 @@
 .left {
   transform: scaleX(-1);
 }
-
