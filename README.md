@@ -1,8 +1,9 @@
 # DeerKiller Readme
 <details>
   <summary>❓Why the page is not loading❓</summary>
-  Due to usage of PHP and MySQL for saving the best scores so I had to use hosting that supports this technology. 
-  I have no money so I had to use a free one that puts websites to sleep. Juts wait a few minutes and it should work.
+  Due to usage of PHP and MySQL for saving the best scores I had to use hosting whith support for this technology. 
+  I have no money so I had to use a free hosting which unfortunately puts websites to sleep. 
+  Juts wait a few minutes and it should work.
 </details>
 <details>
   <summary>❓Why sounds starts playing after first click and not when I open the page❓</summary>
