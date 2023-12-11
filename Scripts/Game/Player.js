@@ -1,7 +1,13 @@
 "use strict"
 
 class Player {
-  constructor() {
+  static car_hit_tree = new Audio("Sounds/car_hit_tree.mp3")
+  static player_img = loadImage("Images/Game/player.png")
+
+  constructor(game_object) {
+    this.game_object = game_object
+    Player.car_hit_tree.volume = 0.5
+
     this.x = 0
     this.y = 0
     this.clear_x = 0
@@ -20,7 +26,7 @@ class Player {
     this.game_over = false
     this.animation_stop = false
 
-    this.img = player_img
+    this.img = Player.player_img
     this.hitbox = new Path2D()
     this.hitbox.ellipse(this.x + this.center_x, this.y + this.center_y, this.center_x, this.center_y, 0, 0, Math.PI * 2)
 
@@ -28,9 +34,7 @@ class Player {
     this.roadOffsetLeft = road.getBoundingClientRect().left
     window.addEventListener("mousemove", (e) => this.updatePosition(e))
     window.addEventListener("touchmove", (e) => this.updatePosition(e), { passive: false })
-    window.addEventListener("resize", (e) => {
-      this.roadOffsetLeft = road.getBoundingClientRect().left
-    })
+    window.addEventListener("resize", (e) => (this.roadOffsetLeft = road.getBoundingClientRect().left))
   }
 
   draw(ctx) {
@@ -73,8 +77,8 @@ class Player {
     this.clear_x = this.x
     this.clear_y = this.y
 
-    this.x = (new_x - this.center_x - this.roadOffsetLeft) * game.width_ratio
-    this.y = (new_y - this.center_y) * game.height_ratio
+    this.x = (new_x - this.center_x - this.roadOffsetLeft) * this.game_object.width_ratio
+    this.y = (new_y - this.center_y) * this.game_object.height_ratio
     this.stopAtEdge()
 
     if (this.old_page_x === new_x && this.old_page_y === new_y) this.not_moving = true
@@ -88,10 +92,10 @@ class Player {
   }
 
   stopAtEdge() {
-    if (this.x > game.right_edge - this.width) this.x = game.right_edge - this.width
-    else if (this.x < game.left_edge) this.x = game.left_edge
+    if (this.x > this.game_object.right_edge - this.width) this.x = this.game_object.right_edge - this.width
+    else if (this.x < this.game_object.left_edge) this.x = this.game_object.left_edge
 
-    if (this.y > game.height - this.height) this.y = game.height - this.height
+    if (this.y > this.game_object.height - this.height) this.y = this.game_object.height - this.height
     else if (this.y < 0) this.y = 0
   }
 
@@ -114,10 +118,10 @@ class Player {
     if (this.visibility_timer === 0) {
       setTimeout(() => (this.visibility_timer = 1), 250)
       return 0
-    } else {
-      setTimeout(() => (this.visibility_timer = 0), 250)
-      return 1
     }
+      
+    setTimeout(() => (this.visibility_timer = 0), 250)
+    return 1
   }
 
   endGameAnimation(ctx) {
@@ -129,23 +133,26 @@ class Player {
       this.x += 2.5 * this.side
     }
 
-    ctx.clearRect(game.left_edge - 100, 0, game.width - 2 * game.left_edge + 200, game.height)
+    ctx.clearRect(this.game_object.left_edge - 100, 0, this.game_object.width - 2 * this.game_object.left_edge + 200, this.game_object.height)
     ctx.translate(this.x + this.center_x, this.y + this.center_y)
     ctx.rotate((this.rotation * this.side * Math.PI) / 180)
+
     if (!this.animation_stop && this.rotation < 50) this.rotation += 0.5
+
     ctx.drawImage(this.img, -this.center_x, -this.center_y, this.width, this.height)
     ctx.setTransform(1, 0, 0, 1, 0, 0)
 
     if (!this.animation_stop) {
-      const out_from_left = Math.abs(this.old_y - this.y) > (this.old_x - game.left_edge) * Math.sqrt(2) + (280 - this.old_x) / 2 + 15
-      const out_from_right = Math.abs(this.old_y - this.y) > Math.abs(this.old_x - game.right_edge) * Math.sqrt(2) - (578 - this.old_x) / 2 - 30
+      const out_from_left = Math.abs(this.old_y - this.y) > (this.old_x - this.game_object.left_edge) * Math.sqrt(2) + (280 - this.old_x) / 2 + 15
+      const out_from_right = Math.abs(this.old_y - this.y) > Math.abs(this.old_x - this.game_object.right_edge) * Math.sqrt(2) - (578 - this.old_x) / 2 - 30
+      
       if (out_from_left || out_from_right) {
         this.animation_stop = true
-        car_tires_screech.pause()
-        if (!sound_muted) car_hit_tree.play()
-        game.bg_road.stopAnimation()
-        game.bg_trees.stopAnimation()
-        setTimeout(() => game.addHappyDeers(), 100)
+        Game.car_tires_screech.pause()
+        if (!Menu.sound_muted) Player.car_hit_tree.play()
+        this.game_object.bg_road.stopAnimation()
+        this.game_object.bg_trees.stopAnimation()
+        setTimeout(() => this.game_object.addHappyDeers(), 100)
       }
     }
   }

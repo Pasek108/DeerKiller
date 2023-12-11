@@ -10,7 +10,6 @@
 
 * {
   box-sizing: border-box;
-  font-family: "Royal_Fighter";
 }
 
 .disclaimer {
@@ -18,11 +17,11 @@
 }
 
 html {
+  font-family: "Royal_Fighter";
   font-size: 1.1vw;
 }
 
 body {
-  margin: 0;
   scroll-behavior: smooth;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -32,10 +31,12 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  
   background-color: white;
   overflow: hidden;
   width: 100vw;
   height: 100vh;
+  margin: 0;
 }
 
 .full-screen {

@@ -1,28 +1,30 @@
 "use strict"
 
-const difficulty = new MenuWindow(".difficulty", "100vw")
+class Difficulty extends MenuWindow {
+  constructor(class_name, position, menu_container, load_game_callback) {
+    super(class_name, position, menu_container, menu_container)
+    this.load_game_callback = load_game_callback
 
-const difficulty_options = difficulty.container.querySelectorAll(".options .option")
-let option_clicked = false
-for (let i = 0; i < difficulty_options.length; i++) {
-  difficulty_options[i].addEventListener("click", () => loadGame(i))
-}
+    this.option_clicked = false
+    this.options = this.container.querySelectorAll(".options .option")
+    this.options.forEach((option, index) => option.addEventListener("click", () => this.loadGame(index)))
+  }
 
-function loadGame(level) {
-  if (!option_clicked) {
-    option_clicked = true
-    fadeOut(menu)
-    fadeOut(difficulty.container)
+  lockOptions() {
+    this.option_clicked = true
+  }
 
-    let id = setInterval(() => {
-      if (menu_music.volume < 0.01) {
-        menu_music.pause()
-        menu_music.volume = 1
-        fadeOut(black_screen)
-        game.initGame(level)
-        option_clicked = false
-        clearInterval(id)
-      } else menu_music.volume -= 0.01
-    }, 20)
+  unlockOptions() {
+    this.option_clicked = false
+  }
+
+  loadGame(level) {
+    if (this.option_clicked) return
+
+    this.lockOptions()
+
+    fadeOut(this.container)
+
+    this.load_game_callback(level)
   }
 }

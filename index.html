@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta http-equiv="Cache-control" content="public" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -116,9 +116,7 @@
             <div class="links flex-center-column">
               <a href="https://pixabay.com/vectors/traffic-sign-road-sign-caution-deer-3015221/" target="_blank">Menu logo</a>
               <a href="https://www.transparentpng.com/download/blood-splatter-cut-out_14064.html" target="_blank">Menu blood</a>
-              <a href="https://www.dreamstime.com/red-highlighter-marker-red-highlighter-marker-strokes-vector-brush-pen-underline-lines-image129437064" target="_blank"
-                >Menu underline</a
-              >
+              <a href="https://www.dreamstime.com/red-highlighter-marker-red-highlighter-marker-strokes-vector-brush-pen-underline-lines-image129437064" target="_blank">Menu underline</a>
               <a href="https://www.deviantart.com/seansan1/art/First-Attempt-at-Pixel-Art-Deer-Skull-644362445" target="_blank">Deer skull</a>
             </div>
 
@@ -133,7 +131,9 @@
       </div>
 
       <footer class="flex-center-row">
-        <h3>Game created by <a href="https://github.com/Pasek108">Artur Pas <i class="fa-brands fa-github"></i></a></h3>
+        <h3>
+          Game created by <a href="https://github.com/Pasek108">Artur Pas <i class="fa-brands fa-github"></i></a>
+        </h3>
       </footer>
     </div>
 
@@ -168,22 +168,49 @@
       </div>
     </div>
 
-    <script src="Scripts/global.js"></script>
+    <script>
+      function loadImage(path) {
+        const img = new Image()
+        img.src = path
 
-    <script src="Scripts/Menu/menu.js"></script>
-    <script src="Scripts/Menu/difficulty.js"></script>
-    <script src="Scripts/Menu/top_score.js"></script>
-    <script src="Scripts/Menu/credits.js"></script>
+        return img
+      }
 
-    <script src="Scripts/Game/UI/health_bar.js"></script>
-    <script src="Scripts/Game/UI/energy_bar.js"></script>
-    <script src="Scripts/Game/UI/points_counter.js"></script>
-    <script src="Scripts/Game/UI/game_over.js"></script>
+      function getRandomInt(min, max) {
+        min = Math.ceil(min)
+        max = Math.floor(max)
 
-    <script src="Scripts/Game/Deer.js"></script>
-    <script src="Scripts/Game/Deer_laugh.js"></script>
-    <script src="Scripts/Game/Enemy.js"></script>
+        return Math.floor(Math.random() * (max - min + 1)) + min
+      }
+
+      function fadeIn(elem) {
+        elem.style.visibility = "visible"
+        elem.style.opacity = "1"
+      }
+
+      function fadeOut(elem) {
+        elem.style.opacity = "0"
+        setTimeout(() => (elem.style.visibility = "hidden"), 1500)
+      }
+    </script>
+
     <script src="Scripts/Game/Player.js"></script>
-    <script src="Scripts/Game/game.js"></script>
+    <script src="Scripts/Game/Enemy.js"></script>
+    <script src="Scripts/Game/Deer.js"></script>
+    <script src="Scripts/Game/HappyDeer.js"></script>
+
+    <script src="Scripts/Game/UI/HealthBar.js"></script>
+    <script src="Scripts/Game/UI/EnergyBar.js"></script>
+    <script src="Scripts/Game/UI/PointsCounter.js"></script>
+    <script src="Scripts/Game/UI/GameOver.js"></script>
+
+    <script src="Scripts/Game/RoadBackground.js"></script>
+    <script src="Scripts/Game/TreesBackground.js"></script>
+    <script src="Scripts/Game/Game.js"></script>
+
+    <script src="Scripts/Menu/MenuWindow.js"></script>
+    <script src="Scripts/Menu/TopScore.js"></script>
+    <script src="Scripts/Menu/Difficulty.js"></script>
+    <script src="Scripts/Menu/Menu.js"></script>
   </body>
 </html>

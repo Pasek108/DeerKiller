@@ -1,16 +1,25 @@
 "use strict"
 
 class Deer {
+  static deer_death = new Audio("Sounds/deer_death.wav")
+  static blood_img = loadImage("Images/Game/blood.png")
+  static deer_img = {
+    left: loadImage("Images/Game/deer_left.png"),
+    right: loadImage("Images/Game/deer_right.png"),
+  }
+
   static min_speed = 3
   static max_speed = 15
 
-  constructor(type) {
+  constructor(type, game_object) {
     this.type = type
+    this.game_object = game_object
+    
     this.is_visible = true
     this.hit_by_car = false
     this.game_over = false
 
-    this.sound = deer_death.cloneNode()
+    this.sound = Deer.deer_death.cloneNode()
     this.newPosition()
   }
 
@@ -21,7 +30,7 @@ class Deer {
   move() {
     if (!this.is_visible) return
 
-    if (game.is_slowmo_active) {
+    if (this.game_object.is_slowmo_active) {
       if (!this.hit_by_car) this.x += this.speed_x / 4
       this.y += this.speed_y / 4
     } else {
@@ -29,9 +38,9 @@ class Deer {
       this.y += this.speed_y
     }
 
-    const out_from_bottom = this.y > game.height + 100
-    const out_from_left = this.type === "left" ? 0 : this.x < game.left_edge - 2 * this.width
-    const out_from_right = this.type === "right" ? 0 : this.x > game.right_edge + 2 * this.width
+    const out_from_bottom = this.y > this.game_object.height + 100
+    const out_from_left = this.type === "left" ? 0 : this.x < this.game_object.left_edge - 2 * this.width
+    const out_from_right = this.type === "right" ? 0 : this.x > this.game_object.right_edge + 2 * this.width
 
     if (out_from_bottom || out_from_left || out_from_right) {
       this.is_visible = false
@@ -43,13 +52,16 @@ class Deer {
     this.width = 76
     this.height = 88
     this.speed_y = 17
-    this.sprite = blood_img
+    this.sprite = Deer.blood_img
     this.hit_by_car = true
   }
 
   newPosition() {
-    this.x = getRandomInt(this.width, this.width * 4) * (this.type === "left" ? -1 : 1) + (this.type === "left" ? game.left_edge : game.right_edge)
-    this.y = getRandomInt(-game.height / 2, game.height / 2)
+    this.x = getRandomInt(this.width, this.width * 4) 
+    this.x *= (this.type === "left" ? -1 : 1) 
+    this.x += (this.type === "left" ? this.game_object.left_edge : this.game_object.right_edge)
+
+    this.y = getRandomInt(-this.game_object.height / 2, this.game_object.height / 2)
     this.speed_x = getRandomInt(Deer.min_speed, Deer.max_speed / 2) * (this.type === "left" ? 1 : -1)
     this.speed_y = getRandomInt(Deer.min_speed, Deer.max_speed)
 
@@ -57,7 +69,7 @@ class Deer {
     this.height = 70
     this.center_x = this.width / 2
     this.center_y = this.height / 2
-    this.sprite = deer_img[this.type]
+    this.sprite = Deer.deer_img[this.type]
     this.hit_by_car = false
     this.is_visible = true
   }
@@ -73,7 +85,12 @@ class Deer {
     const r_top_enemy = [enemy.x + enemy.width, enemy.y]
     const l_bot_enemy = [enemy.x, enemy.y + enemy.height]
 
-    return (l_top_enemy[0] < l_top_deer[0] && r_top_enemy[0] > l_top_deer[0] && l_top_enemy[1] < l_top_deer[1] && l_bot_enemy[1] > l_top_deer[1]) || (l_top_enemy[0] < l_top_deer[0] && r_top_enemy[0] > l_top_deer[0] && l_top_enemy[1] < l_bot_deer[1] && l_bot_enemy[1] > l_bot_deer[1]) || (r_top_enemy[0] > r_top_deer[0] && l_top_enemy[0] < r_top_deer[0] && l_top_enemy[1] < l_top_deer[1] && l_bot_enemy[1] > l_top_deer[1]) || (r_top_enemy[0] > r_top_deer[0] && l_top_enemy[0] < r_top_deer[0] && l_top_enemy[1] < l_bot_deer[1] && l_bot_enemy[1] > l_bot_deer[1])
+    return (
+      (l_top_enemy[0] < l_top_deer[0] && r_top_enemy[0] > l_top_deer[0] && l_top_enemy[1] < l_top_deer[1] && l_bot_enemy[1] > l_top_deer[1]) ||
+      (l_top_enemy[0] < l_top_deer[0] && r_top_enemy[0] > l_top_deer[0] && l_top_enemy[1] < l_bot_deer[1] && l_bot_enemy[1] > l_bot_deer[1]) || 
+      (r_top_enemy[0] > r_top_deer[0] && l_top_enemy[0] < r_top_deer[0] && l_top_enemy[1] < l_top_deer[1] && l_bot_enemy[1] > l_top_deer[1]) || 
+      (r_top_enemy[0] > r_top_deer[0] && l_top_enemy[0] < r_top_deer[0] && l_top_enemy[1] < l_bot_deer[1] && l_bot_enemy[1] > l_bot_deer[1])
+    )
   }
 
   collistionWithPlayer(ctx, player) {
@@ -90,6 +107,11 @@ class Deer {
     const m_bot = [this.x + this.center_x, this.y + this.height]
     const r_bot = [this.x + this.width, this.y + this.height]
 
-    return ctx.isPointInPath(player.hitbox, l_top[0], l_top[1]) || ctx.isPointInPath(player.hitbox, m_top[0], m_top[1]) || ctx.isPointInPath(player.hitbox, r_top[0], r_top[1]) || ctx.isPointInPath(player.hitbox, l_mid[0], l_mid[1]) || ctx.isPointInPath(player.hitbox, r_mid[0], r_mid[1]) || ctx.isPointInPath(player.hitbox, l_bot[0], l_bot[1]) || ctx.isPointInPath(player.hitbox, m_bot[0], m_bot[1]) || ctx.isPointInPath(player.hitbox, r_bot[0], r_bot[1])
+    return (
+      ctx.isPointInPath(player.hitbox, l_top[0], l_top[1]) || ctx.isPointInPath(player.hitbox, m_top[0], m_top[1]) || 
+      ctx.isPointInPath(player.hitbox, r_top[0], r_top[1]) || ctx.isPointInPath(player.hitbox, l_mid[0], l_mid[1]) || 
+      ctx.isPointInPath(player.hitbox, r_mid[0], r_mid[1]) || ctx.isPointInPath(player.hitbox, l_bot[0], l_bot[1]) || 
+      ctx.isPointInPath(player.hitbox, m_bot[0], m_bot[1]) || ctx.isPointInPath(player.hitbox, r_bot[0], r_bot[1])
+    )
   }
 }

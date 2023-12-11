@@ -1,181 +1,69 @@
 "use strict"
 
-class BackgroundRoad {
-  width = 10
-  height = 864
-  lines_height = 69
-  lines_space = 69
-  speed = 17
-
-  fps = 60
-  now
-  then
-  elapsed
-
-  animation = undefined
-
-  constructor(canvas) {
-    this.ctx = canvas.getContext("2d")
-    this.ctx.imageSmoothingEnabled = false
-    this.ctx.fillStyle = "white"
-
-    this.lines_y = []
-    for (let i = 0; i < 7; i++) {
-      this.lines_y.push(this.lines_height * i + this.lines_space * i)
-    }
-
-    this.offset = this.height - this.lines_y[6]
-  }
-
-  draw(newtime) {
-    this.animation = window.requestAnimationFrame(this.draw.bind(this))
-
-    this.now = newtime
-    this.elapsed = this.now - this.then
-
-    if (this.elapsed > this.fpsInterval) {
-      this.then = this.now - (this.elapsed % this.fpsInterval)
-
-      this.ctx.clearRect(0, 0, this.width, this.height)
-
-      for (let i = 0; i < 7; i++) {
-        this.ctx.fillRect(0, this.lines_y[i], this.width, this.lines_height)
-        this.lines_y[i] += this.speed
-
-        if (this.lines_y[i] > this.height) {
-          this.lines_y[i] = -this.lines_space - this.offset + (this.lines_y[i] - this.height)
-        }
-      }
-    }
-  }
-
-  startAnimation() {
-    this.fpsInterval = 1000 / this.fps
-    this.then = window.performance.now()
-    this.startTime = this.then
-    this.animation = window.requestAnimationFrame(this.draw.bind(this))
-  }
-
-  stopAnimation() {
-    this.animation = window.cancelAnimationFrame(this.animation)
-  }
-}
-
-class BackgroundTrees {
-  width = 864
-  height = 864
-  speed = 17
-  y = 0
-
-  fps = 60
-  now
-  then
-  elapsed
-
-  img = loadImage("Images/Game/forest_bg.png")
-  animation = undefined
-
-  constructor(canvas) {
-    this.ctx_l = canvas[0].getContext("2d")
-    this.ctx_l.imageSmoothingEnabled = false
-
-    this.ctx_p = canvas[1].getContext("2d")
-    this.ctx_p.imageSmoothingEnabled = false
-  }
-
-  draw(newtime) {
-    this.animation = window.requestAnimationFrame(this.draw.bind(this))
-
-    this.now = newtime
-    this.elapsed = this.now - this.then
-
-    if (this.elapsed > this.fpsInterval) {
-      this.then = this.now - (this.elapsed % this.fpsInterval)
-
-      this.ctx_l.clearRect(19, 0, 30, this.height)
-      this.ctx_p.clearRect(19, 0, 30, this.height)
-
-      this.ctx_l.drawImage(this.img, 19, this.y, this.width, this.height)
-      this.ctx_p.drawImage(this.img, 19, this.y, this.width, this.height)
-
-      this.ctx_l.drawImage(this.img, 19, this.y - this.height, this.width, this.height)
-      this.ctx_p.drawImage(this.img, 19, this.y - this.height, this.width, this.height)
-
-      this.y += this.speed
-      if (this.y > this.height) this.y = this.y - this.height
-    }
-  }
-
-  startAnimation() {
-    this.fpsInterval = 1000 / this.fps
-    this.then = window.performance.now()
-    this.startTime = this.then
-    this.animation = window.requestAnimationFrame(this.draw.bind(this))
-  }
-
-  stopAnimation() {
-    this.animation = window.cancelAnimationFrame(this.animation)
-
-    this.ctx_l.clearRect(19, 0, 30, this.height)
-    this.ctx_p.clearRect(19, 0, 30, this.height)
-
-    this.ctx_l.drawImage(this.img, 19, 0, this.width, this.height)
-    this.ctx_p.drawImage(this.img, 19, 0, this.width, this.height)
-  }
-}
-
 class Game {
-  //canvas
-  width = 864
-  height = 864
-  left_edge = 183
-  right_edge = 681
-  width_ratio = 0
-  height_ratio = 0
+  static car_tires_screech = new Audio("Sounds/car_tires_screech.mp3")
+  static game_music = new Audio("Sounds/game.mp3")
 
-  //game
-  is_game_ready = false
-  is_game_started = false
-  is_game_over = false
-  is_slowmo_active = false
-  slowmo_animation = undefined
-  is_key_pressed = 0
+  constructor() {
+    this.html = document.querySelector("html")
 
-  fps = 60
-  now
-  then
-  elapsed
+    //canvas
+    this.width = 864
+    this.height = 864
+    this.left_edge = 183
+    this.right_edge = 681
+    this.width_ratio = 0
+    this.height_ratio = 0
 
-  //interface
-  game_over_screen = new GameOver()
-  health_bar = new HealthBar()
-  energy_bar = new EnergyBar()
-  points_counter = new PointsCounter(".points")
+    //game
+    this.is_game_ready = false
+    this.is_game_started = false
+    this.is_game_over = false
+    this.is_slowmo_active = false
+    this.slowmo_animation = undefined
+    this.is_key_pressed = 0
 
-  game_animation = undefined
+    this.fps = 60
+    this.now
+    this.then
+    this.elapsed
 
-  constructor(canvas) {
-    this.ctx = canvas.getContext("2d")
+    this.game_animation = undefined
+
+    this.canvas = document.querySelector(".game-canvas")
+    this.ctx = this.canvas.getContext("2d")
     this.ctx.imageSmoothingEnabled = false
     this.ctx.strokeStyle = "blue"
     this.ctx.lineWidth = 2
 
-    this.player = new Player()
+    Game.car_tires_screech.volume = 0.5
+    this.game_music = Game.game_music
+    this.game_music.loop = true
+    this.game_music.volume = 0
+    this.game_music.currentTime = 36.8
+   
+    this.player = new Player(this)
     this.enemies = []
     this.deers = []
     this.happy_deers = []
 
-    this.bg_road = new BackgroundRoad(document.querySelector(".road-canvas"))
-    this.bg_trees = new BackgroundTrees(document.querySelectorAll(".trees-canvas"))
+    this.bg_road = new RoadBackground()
+    this.bg_trees = new TreesBackground()
 
-    this.resize(canvas)
-    window.addEventListener("resize", () => this.resize(canvas))
+    this.game_over_screen = new GameOver(this)
+    this.health_bar = new HealthBar(this)
+    this.energy_bar = new EnergyBar(this)
+    this.points_counter = new PointsCounter(".points", this)
+    this.counter = document.querySelector(".counter");
+
+    this.resize()
+    window.addEventListener("resize", () => this.resize())
     window.addEventListener("keypress", () => this.slowTime())
   }
 
   initGame(difficulty) {
-    html.style.pointerEvents = "none"
-    html.style.cursor = "none"
+    this.html.style.pointerEvents = "none"
+    this.html.style.cursor = "none"
     this.game_over_screen.reset()
     this.setDifficulty(difficulty)
     this.addEnemies()
@@ -191,27 +79,27 @@ class Game {
     this.bg_road.startAnimation()
     this.bg_trees.startAnimation()
 
-    fadeIn(counter)
-    if (!sound_muted) game_music.play()
+    fadeIn(this.counter)
+    if (!Menu.sound_muted) this.game_music.play()
     this.countdown(4)
 
-    game_music.volume = 0
+    this.game_music.volume = 0
 
     let id = setInterval(() => {
-      if (game_music.volume > 0.5) {
-        game_music.volume = 0.5
+      if (this.game_music.volume > 0.5) {
+        this.game_music.volume = 0.5
         clearInterval(id)
-      } else game_music.volume += 0.01
+      } else this.game_music.volume += 0.01
     }, 60)
   }
 
   countdown(count) {
     count--
-    counter.innerText = `${count}`
+    this.counter.innerText = `${count}`
     if (count < 1) {
       this.is_game_started = true
-      counter.innerText = ""
-      fadeOut(counter)
+      this.counter.innerText = ""
+      fadeOut(this.counter)
     } else setTimeout(() => this.countdown(count), 900)
   }
 
@@ -233,7 +121,7 @@ class Game {
 
           if (this.deers[i].collistionWithPlayer(this.ctx, this.player)) {
             this.deers[i].deerHit()
-            if (!sound_muted) this.deers[i].sound.play()
+            if (!Menu.sound_muted) this.deers[i].sound.play()
             this.points_counter.update(1000)
           }
         }
@@ -311,9 +199,9 @@ class Game {
   }
 
   gameOverAnimation(last_hitted_enemy_id) {
-    car_tires_screech.currentTime = 0
-    if (!sound_muted) car_tires_screech.play()
-    game_music.pause()
+    Game.car_tires_screech.currentTime = 0
+    if (!Menu.sound_muted) Game.car_tires_screech.play()
+    this.game_music.pause()
 
     this.enemies[last_hitted_enemy_id].destroy()
     setTimeout(() => (this.enemies[last_hitted_enemy_id].is_visible = false), 900)
@@ -348,17 +236,17 @@ class Game {
     this.bg_road.speed = 17
     this.bg_trees.speed = 17
 
-    this.player = new Player()
+    this.player = new Player(this)
     this.happy_deers = []
 
-    game_music.currentTime = 36.8
+    this.game_music.currentTime = 36.8
   }
 
   addEnemies() {
     this.enemies = []
 
     for (let i = 0; i < Enemy.amount; i++) {
-      this.enemies.push(new Enemy())
+      this.enemies.push(new Enemy(this))
       this.newEnemyPosition(i)
       this.enemies[i].is_ready = true
     }
@@ -415,15 +303,15 @@ class Game {
 
   addDeers() {
     this.deers = []
-    this.deers.push(new Deer("left"))
-    this.deers.push(new Deer("right"))
+    this.deers.push(new Deer("left", this))
+    this.deers.push(new Deer("right", this))
   }
 
   addHappyDeers() {
     this.happy_deers = []
 
-    for (let i = 0; i < 10; i++) this.happy_deers.push(new DeerLaugh(this.left_edge - 105, 110 * i + 30, "left"))
-    for (let i = 0; i < 10; i++) this.happy_deers.push(new DeerLaugh(this.right_edge + 30, 110 * i + 30, "right"))
+    for (let i = 0; i < 10; i++) this.happy_deers.push(new HappyDeer(this.left_edge - 105, 110 * i + 30, "left", this))
+    for (let i = 0; i < 10; i++) this.happy_deers.push(new HappyDeer(this.right_edge + 30, 110 * i + 30, "right", this))
   }
 
   setDifficulty(level) {
@@ -459,17 +347,8 @@ class Game {
     }
   }
 
-  resize(canvas) {
-    this.width_ratio = this.width / canvas.offsetWidth
-    this.height_ratio = this.height / canvas.offsetHeight
+  resize() {
+    this.width_ratio = this.width / this.canvas.offsetWidth
+    this.height_ratio = this.height / this.canvas.offsetHeight
   }
 }
-
-const game = new Game(document.querySelector(".game-canvas"))
-
-points_count.loop = true
-game_music.loop = true
-game_music.volume = 0
-game_music.currentTime = 36.8
-car_tires_screech.volume = 0.5
-car_hit_tree.volume = 0.5

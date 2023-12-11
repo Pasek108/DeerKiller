@@ -1,20 +1,38 @@
 "use strict"
 
-class DeerLaugh {
-  constructor(x, y, type) {
+class HappyDeer {
+  static deer_laugh = [
+    new Audio("Sounds/deer_laugh1.wav"), 
+    new Audio("Sounds/deer_laugh2.wav"), 
+    new Audio("Sounds/deer_laugh3.wav"), 
+    new Audio("Sounds/deer_laugh4.wav"), 
+    new Audio("Sounds/deer_laugh5.wav")
+  ]
+
+  static deer_laugh_img = {
+    left: loadImage("Images/Game/deer_left_smile.png"),
+    right: loadImage("Images/Game/deer_right_smile.png"),
+  }
+
+  constructor(x, y, type, game_object) {
+    this.type = type === "left" ? 1 : -1
+    this.game_object = game_object
+
     this.tick = getRandomInt(-1, 1)
     this.x = x
+    this.old_x = x
     this.y = y + 5 * this.tick
+
+    this.sprite = HappyDeer.deer_laugh_img[type]
     this.width = 75
     this.height = 73
-    this.type = type === "left" ? 1 : -1
-    this.sound = deer_laugh[getRandomInt(0, 9) % 5].cloneNode()
+
+    this.sound = HappyDeer.deer_laugh[getRandomInt(0, 9) % 5].cloneNode()
     this.sound_delay = getRandomInt(0, 2000)
     this.sound.volume = 0.5
-    this.sprite = deer_laugh_img[type]
+
     this.animation = undefined
     this.step = 0
-    this.old_x = x
     while (this.step === 0) this.step = getRandomInt(-1, 1)
 
     this.show()
@@ -32,7 +50,7 @@ class DeerLaugh {
         clearInterval(this.animation)
         this.laugh()
         setTimeout(() => {
-          if (!sound_muted) this.sound.play()
+          if (!Menu.sound_muted) this.sound.play()
         }, this.sound_delay)
       }
     }, 50)
@@ -57,8 +75,8 @@ class DeerLaugh {
     setTimeout(() => {
       this.sound.pause()
       clearInterval(this.animation)
-      game.game_over_screen.show()
-      game.game_animation = window.cancelAnimationFrame(game.game_animation)
+      this.game_object.game_over_screen.show()
+      this.game_object.game_animation = window.cancelAnimationFrame(this.game_object.game_animation)
     }, 3000)
   }
 
