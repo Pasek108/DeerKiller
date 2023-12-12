@@ -17,7 +17,7 @@
   <ul>
 </details>
 <details>
-  <summary>❓Why I'm using only one branch❓</summary>
+  <summary>❓Why am I using only one branch❓</summary>
   It's for the similar reasons as with commits.  
   <ul>
     <li>I do many things at once</li>
@@ -48,55 +48,52 @@ See [live demo](https://pas-artur.000webhostapp.com/deer-killer/).
 ----------------------------------
 
 ### Technologies
-- HTML5
-- CSS3
-- JS
-- PHP 8.1.12
-- Apache 2.4.54 
-- phpMyAdmin 5.2.0
-
 Languages:
 - HTML
 - CSS
 - JS
 - PHP
   
-Libraries:
-- [FontAwesome](https://fontawesome.com) 6.2.1
-  
 Programs:
 - [XAMPP](https://www.apachefriends.org/pl/index.html)
 - [VSCode](https://code.visualstudio.com)
-- [Prepros](https://prepros.io)
   
 ----------------------------------
 
 ### Features
-- Player movement
-- Spawning enemies that kills player
-- Spawning deers that can be killed by enemy or player giving him points
-- Three lives, barrier when killed, energy and slowing time skill
+- Menu animation
+- Mute/unmute sound
+- Menu windows with transitions
+- Credits window
+- Four levels of difficulty
+- Personal and general top 10 leaderboards for each difficulty
+- Spawning enemies that can hit players
+- Spawning deers that can be hit by enemy or player giving him points
+- Three lives for player
+- Explosion animation of enemy when it is hit by a player
+- Short time protection when enemy hit the player
+- Energy points for using slow motion skill
 - Points counter
-- Saving best score
-- Menu, Difficulty levels, Leaderboard and Credits
-- Start animation
-- Transition animations
-- Game over slip and laughing deers animation
-- Full screen and mute options
+- Player slip and laughing deers animations when player loses all their lives
+- Game over screen and game restart without reloading the page
 
 ----------------------------------
 
 ### Setup
-To run this program: 
-- Use the [live demo](https://pasek108.github.io/GoblinSlayer/)
-- Download this repo and:
-  - run index.html file
-  - or start live server ([VSCode LiveServer Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer), Prepros preview etc.) 
+Ways to run this program: 
+1. Use the [live demo](https://pas-artur.000webhostapp.com/deer-killer/)
+2. Follow the same steps as for editing the program
 
-To edit program:
+To edit this program:
 - Download this repo
-- Install [Prepros](https://prepros.io)
-- Add this project in Prepros
+- Download [XAMPP](https://www.apachefriends.org/pl/index.html)
+- Run Apache and MySQL in XAMPP Control Panel
+- Move the project to XAMPP's htdocs folder
+- Open [phpMyAdmin](http://localhost/phpmyadmin/index.php)
+- Click on Import tab
+- Choose deerkiller.sql file from PHP folder in project
+- Click import button at the bottom of the page
+- Open [localhost](http://localhost) and open folder that you previously moved to htdocs
 - Start coding
 
 ----------------------------------
@@ -140,88 +137,70 @@ This section is a general description of the project required to understand how 
 ### User interface
 #### Main menu
 ![main menu](/_for_readme/main_menu.png)
-Main menu has:
-- Animated snow background
-- Mute/unmute sound button
-- Three options too choose:
-  - Start option will hide the menu and runs the game
-  - Achievements option will show the achievements view
-  - Credits option will show the credits view
+
 
 ----------------------------------
 
-#### Achievements
-![achievements](/_for_readme/achievements.png)
-Achievements view shows achievements, each of which has:
-- Title ribbon
-- Three stars that indicate completion of a given level
-- Target text with current value of achievement and required value for next level (if it's not already max level)
-- Progress bar
+#### Top score
+![top_score](/_for_readme/top_score.png)
 
-Achievements has 3 levels to complete and 4 possible stages:
-- Stage 0:
-  - Gray border
-  - Disabled all stars
-  - Progess bar empty or bronze color (going to bronze level)
-- Stage 1:
-  - Bronze border
-  - Bronze star lighted up
-  - Silver progess bar color (going to silver level)
-- Stage 2:
-  - Silver border
-  - Silver and bronze stars lighted up
-  - Gold progess bar color (going to gold level)
-- Stage 3:
-  - Gold border
-  - All stars lighted up
-  - Gold progess bar color (gold level is max and it is completed)
 
 ----------------------------------
 
 #### Credits
 ![credits](/_for_readme/credits.png)
-Credits page contains 2 sections with links for resources used in the project and link to my github
+
+
+----------------------------------
+
+#### Difficulty
+![difficulty](/_for_readme/difficulty.png)
+
 
 ----------------------------------
 
 #### Game
-![in game](/_for_readme/in_game.png)
-At the top of the game view are wave and killed goblins counters and at the bottom is an instruction on what keys are used to play the game.
+![game](/_for_readme/game.png)
+![game_hit](/_for_readme/game_hit.png)
 
-The way the game works is simple:
-- Player is standing in the middle
-- Game generates random waves of goblins which runs towards the player
-- Player has to use keys A and D to face left or right direction
-- If player is facing goblin direction, he will kill the goblin, otherwise player will lose
-- When player clears a wave, new one is generated with more goblins that are faster
 
 ----------------------------------
 
 #### Game over
 ![game over](/_for_readme/game_over.png)
-Game over view displays survived waves, killed goblins and button that goes back to main menu
+
 
 ----------------------------------
 
 ### Project structure
 The project directory tree looks like this:
-- :file_folder: GoblinSlayer (project folder)
+- :file_folder: DeerKiller (project folder)
   - :page_facing_up: *git config*
-  - :page_facing_up: *prepros config*
   - :page_facing_up: *index.html file*
   - :page_facing_up: *readme*
   - :file_folder: _for_readme
     - :page_facing_up: *files for readme*
   - :file_folder: Images
-    - :page_facing_up: *images used in the project*
-  - :file_folder: Sound
+    - :file_folder: UI
+      - :page_facing_up: *images for user interface*
+    - :file_folder: Game
+      - :page_facing_up: *images used in the game*
+  - :file_folder: PHP
+    - :page_facing_up: *mysql database file*
+    - :page_facing_up: *php files for saving and getting the score*
+  - :file_folder: Sounds
     - :page_facing_up: *sounds and music used in project*
   - :file_folder: Scripts
-    - :page_facing_up: *scripts used in project*
+    - :file_folder: Menu
+      - :page_facing_up: *scripts for menu*
+    - :file_folder: Game
+      - :page_facing_up: *scripts for game*
+      - :file_folder: UI
+        - :page_facing_up: *scripts for user interface in game*
   - :file_folder: Styles
-    - :page_facing_up: *css files compiled from scss by prepros*
-    - :file_folder: scss
-      - :page_facing_up: *sccs files*
+    - :page_facing_up: *css files*
+    - :file_folder: fonts
+      - :page_facing_up: *fonts used in the project*
 
 ----------------------------------
 
@@ -234,13 +213,26 @@ The project directory tree looks like this:
 
 Menu is entry of the program.
 
-Menu creates and manages one instantiation of each of the classes:
-- SnowyBackground
+Menu creates and manages one instance of each of the classes:
+- MenuWindow (Credits)
+- Difficulty
+- TopScore
 - Game
-- Achievements
-- Credits
+
+Difficulty and TopScore classes are extension of MenuWindow class which is responsible for showing and hiding menu window with transition
 
 Game class creates and manages:
-- One instance of Hero class
-- Many instances of Goblin class
+- One instance of RoadBackground class
+- Two instances of treesBackground class (left and right side)
+- One instance of classes:
+  - HealthBar
+  - EnergyBar
+  - PointsCounter
+  - GameOver
+- One instance of Player class
+- Many instances of classes:
+  - Enemy
+  - Deer
+  - HappyDeer
+
 
