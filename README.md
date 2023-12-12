@@ -177,31 +177,24 @@ This section is a general description of the project required to understand how 
 The project directory tree looks like this:
 - :file_folder: DeerKiller (project folder)
   - :page_facing_up: *git config*
-  - :page_facing_up: *index.html file*
   - :page_facing_up: *readme*
-  - :file_folder: _for_readme
-    - :page_facing_up: *files for readme*
+  - :page_facing_up: *index.html file*
+  - :file_folder: _for_readme - :page_facing_up: *files for readme*
+  - :file_folder: Sounds - :page_facing_up: *sounds and music used in project*
   - :file_folder: Images
-    - :file_folder: UI
-      - :page_facing_up: *images for user interface*
-    - :file_folder: Game
-      - :page_facing_up: *images used in the game*
+    - :file_folder: UI - :page_facing_up: *images for user interface*
+    - :file_folder: Game - :page_facing_up: *images used in the game*
   - :file_folder: PHP
     - :page_facing_up: *mysql database file*
     - :page_facing_up: *php files for saving and getting the score*
-  - :file_folder: Sounds
-    - :page_facing_up: *sounds and music used in project*
   - :file_folder: Scripts
-    - :file_folder: Menu
-      - :page_facing_up: *scripts for menu*
+    - :file_folder: Menu - :page_facing_up: *scripts for menu*
     - :file_folder: Game
       - :page_facing_up: *scripts for game*
-      - :file_folder: UI
-        - :page_facing_up: *scripts for user interface in game*
+      - :file_folder: UI - :page_facing_up: *scripts for user interface in game*
   - :file_folder: Styles
     - :page_facing_up: *css files*
-    - :file_folder: fonts
-      - :page_facing_up: *fonts used in the project*
+    - :file_folder: fonts - :page_facing_up: *fonts used in the project*
 
 ----------------------------------
 
