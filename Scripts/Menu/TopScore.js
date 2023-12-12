@@ -22,7 +22,7 @@ class TopScore extends MenuWindow {
   }
 
   getScores() {
-    const url = new URL(window.location.href + "get_scores.php")
+    const url = new URL(window.location.href + "/PHP/get_scores.php")
 
     const request = new XMLHttpRequest()
     request.open("GET", url, true)
@@ -39,6 +39,8 @@ class TopScore extends MenuWindow {
   }
 
   activateScoreTab(tab_nr) {
+    this.scores = this.getScores()
+
     this.options.forEach((option) => option.classList.remove("active"))
     this.options[tab_nr].classList.add("active")
 
@@ -54,7 +56,10 @@ class TopScore extends MenuWindow {
 
     const string_data = localStorage.getItem(level_name)
     if (string_data === "") {
-      this.personal_top10.innerText = "Leaderboard is empty"
+      const empty = document.createElement("span")
+      empty.className = "empty flex-center-column"
+      empty.innerText = "Leaderboard is empty"
+      this.personal_top10.appendChild(empty)
       return
     }
 
@@ -76,18 +81,24 @@ class TopScore extends MenuWindow {
     let empty = true
 
     for (let i = 0; i < 10; i++) {
-      const id = `${i + 1}.`
-      const name = `${this.scores[i + 10 * level].name}`
-      const score = `${this.scores[i + 10 * level].score}`
+      let id = `${i + 1}.`
+      let name = `${this.scores[i + 10 * level].name}`
+      let score = `${this.scores[i + 10 * level].score}`
 
-      if (name === "" || score === 0) continue
-      else empty = false
+      if (name == "null" || score == "null") continue
 
-      const record = createScoreRecord(id, name, score)
+      const record = this.createScoreRecord(id, name, score)
       this.general_top_10.appendChild(record)
+
+      empty = false
     }
 
-    if (empty) this.general_top_10.innerText = "Leaderboard is empty"
+    if (empty) {
+      const empty = document.createElement("span")
+      empty.className = "empty flex-center-column"
+      empty.innerText = "Leaderboard is empty"
+      this.general_top_10.appendChild(empty)
+    }
   }
 
   createScoreRecord(id, name, score) {

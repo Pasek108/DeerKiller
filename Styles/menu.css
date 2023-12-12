@@ -190,11 +190,15 @@
 }
 
 .top-score .options .score-ranking > div {
-  justify-content: space-around;
+  justify-content: flex-start;
   font-family: "Edit undo";
   font-size: 1.5rem;
   padding: 1rem;
   width: 50%;
+  height: 100%;
+}
+
+.top-score .options .score-ranking .empty {
   height: 100%;
 }
 

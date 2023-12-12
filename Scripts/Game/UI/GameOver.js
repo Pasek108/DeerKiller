@@ -115,7 +115,7 @@ class GameOver {
 
     localStorage.setItem(level, data.join(";"))
 
-    const url = new URL(address + "send_scores.php")
+    const url = new URL(window.location.href + "/PHP/send_scores.php")
     url.searchParams.set("level", level)
     url.searchParams.set("name", name)
     url.searchParams.set("score", points)
@@ -123,11 +123,12 @@ class GameOver {
     request.open("GET", url, true)
     request.send()
 
+    /*
     request.onreadystatechange = () => {
       if (request.readyState == 4 && request.status == 200) {
         console.log(request.responseText);
       }
-    };
+    };*/
 
     this.text.innerHTML = "Score Saved"
     this.save_button.style.textDecoration = null
