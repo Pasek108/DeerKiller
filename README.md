@@ -40,7 +40,7 @@
 <br>
 
 ## Informations
-Arcade racing game with the goal to get as many points as possible in one attempt by killing deers and avoiding cars. <br>
+Deer Killer is an arcade racing game with the goal to get as many points as possible in one attempt by killing deers and avoiding cars. <br>
 See [live demo](https://pas-artur.000webhostapp.com/deer-killer/).
 
 ![preview](/_for_readme/preview.png)
@@ -61,12 +61,13 @@ Programs:
 ----------------------------------
 
 ### Features
-- Menu animation
+- Menu starting animation
 - Mute/unmute sound
 - Menu windows with transitions
 - Credits window
 - Four levels of difficulty
 - Personal and general top 10 leaderboards for each difficulty
+- Countdown on game start
 - Spawning enemies that can hit players
 - Spawning deers that can be hit by enemy or player giving him points
 - Three lives for player
