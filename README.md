@@ -70,6 +70,17 @@ Programs:
 - Player slip and laughing deers animations when player loses all their lives
 - Game over screen and game restart without reloading the page
 
+<br>
+
+> [!NOTE]  
+> Room for improvements:
+> - Ability to stop slowmo skill after atleast 1s (now it runs until it uses up all the energy)
+> - Probably rewriting the code (it's an improved version of my old school project and the code is very messy)
+> - Fixing some problems:
+>   - Game gets faster or slower depending on device framerate
+>   - Sometimes the game starts lagging for few seconds and then again goes smoothly
+>   - Sometimes on laughing deers animation, the deer next to player's car starts blinking
+
 ----------------------------------
 
 ### Setup
