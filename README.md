@@ -1,109 +1,37 @@
-# DeerKiller Readme
-<details>
-  <summary>❓Why the page is not loading❓</summary>
-  Due to usage of PHP and MySQL for saving the best scores I had to use hosting with support for this technology. 
-  I have no money so I used a free hosting which unfortunately puts websites to sleep. Juts wait a few minutes and it should work.
-</details>
-<details>
-  <summary>❓Why sounds starts playing after first click and not when I open the page❓</summary>
-  It's because auto playing sounds is blocked by browser until the user interact with the document.
-</details>
-<details>
-  <summary>❓Why my commits often have no names and I'm not using branches❓</summary>
-  <ul>
-    <li>I often create with bursts many things at once</li>
-    <li>I don't plan things ahead, I just create things that seems good at that moment</li>
-    <li>Sometimes I have bad internet connection and it is troublesome to send commits</li>
-    <li>I'm coding alone so creating branches and describing commits is not useful for me</li>
-  <ul>
-</details>
+<h1 align="center">DeerKiller</h1>
+<p align="center">
+  <strong>
+    A fast-paced arcade racing game. The player must survive for as long as possible by weaving through traffic and hunting deer to achieve high scores.
+  </strong>
+</p>
 
-## Table of Contents
-* [Informations](#informations)
-  * [Technologies](#technologies)
-  * [Features](#features)
-  * [Setup](#setup)
-  * [Acknowledgements](#acknowledgements)
-* [Details](#details)
-  * [User interface](#user-interface)
-  * [Project structure](#project-structure)
-  * [Code organization](#code-organization)
+# Overview :sparkles:
 
-<br>
+## About
+DeerKiller is a 2D arcade game built with Vanilla JavaScript and the HTML5 Canvas. It features a fast-paced "infinite-road" gameplay loop where players must navigate through traffic and run over deers to get bonus points and charge slow-motion ability.
 
-## Informations
-Deer Killer is an arcade racing game with the goal to get as many points as possible in one attempt by killing deers and avoiding cars. <br>
-See [live demo](https://artur-pas.000webhostapp.com/DeerKiller/).
+Check out the [live version](https://artur-pas.000webhostapp.com/DeerKiller/).
 
 ![preview](/_for_readme/preview.png)
 
-----------------------------------
+## Features
+- Enemies: high-speed cars that trigger explosions and life-loss on collision.
+- Deers: bonus targets that provide extra points when hit.
+- Invulnerability period after taking damage.
+- Slow-Motion mechanic.
+- Four levels of difficulty.
+- Highscores for each difficulty.
+- Smooth animations and trasitions.
+- Seamless restart.
 
-### Technologies
-Languages:
-- HTML
-- CSS
-- JS
-- PHP
+## Technologies
+### Core
+- HTML 5
+- CSS 3
+- JavaScript
   
-Programs:
-- [XAMPP](https://www.apachefriends.org/pl/index.html)
-- [VSCode](https://code.visualstudio.com)
-  
-----------------------------------
-
-### Features
-- Menu starting animation
-- Mute/unmute sound
-- Menu windows with transitions
-- Credits window
-- Four levels of difficulty
-- Personal and general top 10 leaderboards for each difficulty
-- Countdown on game start
-- Spawning enemies that can hit players
-- Spawning deers that can be hit by enemy or player giving him points
-- Three lives for player
-- Explosion animation of enemy when it is hit by a player
-- Short time protection when enemy hit the player
-- Energy points for using slow motion skill
-- Points counter
-- Player slip and laughing deers animations when player loses all their lives
-- Game over screen and game restart without reloading the page
-
-<br>
-
-> [!NOTE]  
-> Room for improvements:
-> - Ability to stop slowmo skill after atleast 1s (now it runs until it uses up all the energy)
-> - Probably rewriting the code (it's an improved version of my old school project and the code is very messy)
-> - Fixing some problems:
->   - Game gets faster or slower depending on device framerate
->   - Sometimes the game starts lagging for few seconds and then again goes smoothly
->   - Sometimes on laughing deers animation, the deer next to player's car starts blinking
-
-----------------------------------
-
-### Setup
-Ways to run this program: 
-1. Use the [live demo](https://pas-artur.000webhostapp.com/deer-killer/)
-2. Follow the same steps as for editing the program
-
-To edit this program:
-- Download this repo
-- Download [XAMPP](https://www.apachefriends.org/pl/index.html)
-- Run Apache and MySQL in XAMPP Control Panel
-- Move the project to XAMPP's htdocs folder
-- Open [phpMyAdmin](http://localhost/phpmyadmin/index.php)
-- Click on Import tab
-- Choose deerkiller.sql file from PHP folder in project
-- Click import button at the bottom of the page
-- Open [localhost](http://localhost) and open folder that you previously moved to htdocs
-- Start coding
-
-----------------------------------
-
-### Acknowledgements
-#### Images
+## Acknowledgements
+### Images
 - [Menu logo](https://pixabay.com/vectors/traffic-sign-road-sign-caution-deer-3015221/)
 - [Menu blood](https://www.transparentpng.com/download/blood-splatter-cut-out_14064.html)
 - [Menu underline](https://www.dreamstime.com/red-highlighter-marker-red-highlighter-marker-strokes-vector-brush-pen-underline-lines-image129437064)
@@ -113,15 +41,15 @@ To edit this program:
 - [Car explosion](https://nyknck.itch.io/explosion)
 - [Forest background](https://elthen.itch.io/2d-pixel-art-forest-tileset)
 
-#### Music
+### Music
 - [Menu music](https://www.youtube.com/watch?v=k68thGEDlx8)
 - [Game music](https://www.youtube.com/watch?v=XkDZxO-Fn3E)
 
-#### Fonts
+### Fonts
 - [Royal fighter](https://fontmeme.com/fonts/royal-fighter-font/)
 - [Edit undo](https://www.1001fonts.com/edit-undo-font.html)
 
-#### Sounds
+### Sounds
 - [Car crush](https://www.freesoundslibrary.com/car-crash-sound-effect/)
 - [Car explosion](https://www.freesoundeffects.com/free-track/bomb-2-466478/)
 - [Tires screech](https://bigsoundbank.com/detail-2370-screeching-tires-3.html)
@@ -135,45 +63,56 @@ To edit this program:
 
 <br>
 
-## Details
-This section is a general description of the project required to understand how it works, the exact details are in the code or simply are the code.
+# Details 📜
 
-### User interface
-#### Main menu
+## UI & Application Flow
+
+### Main menu
+After the opening animation, the user is presented with the main menu. From here, the user can toggle sound in the top-right corner or navigate through the difficulty, high score, and credits windows.
+
 ![main menu](/_for_readme/main_menu.png)
 
-
 ----------------------------------
 
-#### Top score
+### Top score
+The high score window allows players to view their top 10 personal records for each difficulty level. (Global leaderboards are currently disabled due to hosting limitations).
+
 ![top_score](/_for_readme/top_score.png)
 
-
 ----------------------------------
 
-#### Credits
-![credits](/_for_readme/credits.png)
+### Credits
+The credits window acknowledges the resources used in the game and provides links to their original sources.
 
+![credits](/_for_readme/credits.png)
 
 ----------------------------------
 
 #### Difficulty
+In the difficulty window, the user can select their preferred level of challenge before starting the game.
+
 ![difficulty](/_for_readme/difficulty.png)
 
-
 ----------------------------------
 
-#### Game
+### Game
+The game begins with a 3-second countdown. Players must avoid traffic (red cars) and run over deer to earn bonus points. For every 3,000 points earned, the player receives an energy point. These points can be exchanged for slow-motion usage (1 energy point = 1 second).
+
 ![game](/_for_readme/game.png)
+
+Players start with 3 lives. If hit by an enemy car, the player loses a life, the enemy vehicle explodes, and the player receives a 3-second invulnerability shield.
+
 ![game_hit](/_for_readme/game_hit.png)
 
-
 ----------------------------------
 
-#### Game over
+### Game over
+Once all lives are lost, the Game Over screen appears. This allows the user to save their score locally or return to the main menu.
+
 ![game over](/_for_readme/game_over.png)
 
 
+<!--
 ----------------------------------
 
 ### Project structure
@@ -231,3 +170,4 @@ Game class creates and manages:
   - Enemy
   - Deer
   - HappyDeer
+-->
