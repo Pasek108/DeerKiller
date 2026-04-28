@@ -25,11 +25,11 @@ Check out the [live version](https://artur-pas.000webhostapp.com/DeerKiller/).
 - Seamless restart.
 
 ## Technologies
-### Core
 - HTML 5
 - CSS 3
 - JavaScript
-  
+
+<!--
 ## Acknowledgements
 ### Images
 - [Menu logo](https://pixabay.com/vectors/traffic-sign-road-sign-caution-deer-3015221/)
@@ -60,6 +60,8 @@ Check out the [live version](https://artur-pas.000webhostapp.com/DeerKiller/).
 - [Deer laugh 3](https://mixkit.co/free-sound-effects/laugh/)
 - [Deer laugh 4](https://mixkit.co/free-sound-effects/laugh/)
 - [Deer laugh 4](https://mixkit.co/free-sound-effects/laugh/)
+
+-->
 
 <br>
 
