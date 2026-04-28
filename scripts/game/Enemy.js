@@ -4,7 +4,7 @@ class Enemy {
   static car_explosion = new Audio("sounds/car_explosion.mp3")
   static car_crash = new Audio("sounds/car_crash.mp3")
   static enemy_img = loadImage("images/game/enemy.png")
-  static explosion_img = [...Array(14).keys()].map(n => loadImage(`images/game/Explosion/${n}.png`))
+  static explosion_img = [...Array(14).keys()].map(n => loadImage(`images/game/explosion/${n}.png`))
 
   static amount = 10
   static min_speed = 5

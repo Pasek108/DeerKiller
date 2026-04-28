@@ -1,7 +1,7 @@
 "use strict"
 
 class PointsCounter {
-  static points_count = new Audio("Sounds/points_count.wav")
+  static points_count = new Audio("sounds/points_count.wav")
 
   constructor(container, game_object) {
     this.container = document.querySelector(container)
